@@ -1,2 +1,49 @@
-<h1>Public::Customers#edit</h1>
-<p>Find me in app/views/public/customers/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col3-md">
+      <h3 class:"p-2">会員情報編集</h3>
+    </div>
+  </div>
+
+    <%= form_with model: @customer, url: customer_information_path, method: :patch do |f| %>
+      <!--%= render "public/shared/error_messages", resource: resource %>-->
+
+        <div class="field">
+          <%= f.label :"名前" %>
+          <%= f.text_field :last_name %>
+          <%= f.text_field :first_name %>
+        </div>
+
+        <div class="field">
+          <%= f.label :"フリガナ" %>
+          <%= f.text_field :kana_last_name %>
+          <%= f.text_field :kana_first_name %>
+        </div>
+
+        <div class="field">
+          <%= f.label :郵便番号 %>
+          <%= f.text_field :postal_code %>
+        </div>
+
+        <div class="field">
+          <%= f.label :"住所" %>
+          <%= f.text_field :address %>
+        </div>
+
+        <div class="field">
+          <%= f.label :"電話番号" %>
+          <%= f.text_field :phone_number %>
+        </div>
+
+        <div class="field">
+          <%= f.label :メールアドレス %>
+          <%= f.text_field :email %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "編集内容を保存", class: "btn btn-success btn-sm" %>
+        </div>
+
+    <% end %>
+    
+  </div>
