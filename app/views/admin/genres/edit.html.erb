@@ -1,0 +1,18 @@
+<div class="container py-5 text-secondary">
+  <div class="row">
+    <div class="col-lg-3">
+      <%= form_with  model: @genre, url:admin_genre_path, method: :patch do |f| %>
+      <%= render "layouts/errors", obj: @genre %>
+        <h1 class="border-bottom">ジャンル編集</h1>
+          <div class="form-group">
+            <label for="genre_title">ジャンル名</label>
+            <%= f.text_field :name, class:"form-control genre_title", id:"genre_name" %>
+          </div>
+        
+          <div class="form-group">
+            <%= f.submit '変更を保存', class:"btn btn-success" %>
+          </div>
+        
+      <% end %>
+    </div>
+  </div>
