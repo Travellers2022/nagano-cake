@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   sessions: 'public/sessions'
 }
   
-  scope module: public do
+  scope module: :public do
     root to: 'homes#top'
     get '/about' => 'homes#about'
     resources :items, only: [:index, :show]
