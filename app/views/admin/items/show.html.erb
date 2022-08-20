@@ -1,4 +1,4 @@
-<h1><strong>商品詳細</strong></h1>
+<h3><strong>商品詳細</strong></h3>
 
 <div class="image">
   <%= image_tag @item.get_image(50, 50) %>
@@ -11,7 +11,7 @@
     商品説明 <%= @item.explanation %>
   </P>
   <p>
-    ジャンル <%= @item.genre.name %
+    ジャンル <%= @item.genre.name %>
   </p>
   <p>
     税込価格（税抜価格）<%= @item.add_tax_price.to_s(:dalimited) %>(<%= @item.price_without_tax %>)円
@@ -24,5 +24,5 @@
       販売停止
     <% end %>
   </p>
-  <%= link_to "編集する", edit_admin_item_path class: "btn btn-success" %>
+  <%= link_to "編集する", edit_admin_item_path(@item) class: "btn btn-success" %>
 </div>
