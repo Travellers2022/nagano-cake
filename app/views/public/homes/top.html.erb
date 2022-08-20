@@ -10,10 +10,11 @@
         	    </div>
             </div>
             
-            <h1><strong>新着商品</strong></h1>
+            <h1 class="text_center"><strong>新着商品</strong></h1>
             <table>
+                
                 <tbody>
-                    <% @items.each do |item|%>
+                    <!--<% @items.each do |item|%>-->
                         <td>
                             <div class="topbox">
                                 <%= link_to item_path(item) do %>
@@ -31,7 +32,8 @@
                     <% end %>
                 </tbody>
             </table>
-            <p align="right"><%= link_to "全ての商品を見る", items_paht %></p>
+            <p align="right"><%= link_to "全ての商品を見る", items_path %></p>
+            
         </div>
     </div>
 </div>
