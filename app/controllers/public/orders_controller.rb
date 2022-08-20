@@ -1,5 +1,10 @@
 class Public::OrdersController < ApplicationController
+   before_action :authenticate_customer!
+  
+  
   def new
+    @order = Order.new
+    @shipping_addresses = ShippingAddress.where(customer: current_customer)
   end
 
   def confirm
@@ -9,6 +14,10 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
+    # @cart_items = current_customer.cart_items.all
+    @order = current_customer.order.new(order_params)
+    
+      
   end
 
   def index
