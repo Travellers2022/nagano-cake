@@ -9,9 +9,9 @@
 
   <h2>商品一覧</h2>
   <p>全<%= @items.count %>件</p>
-  
+
   <% @items.each do |item| %>
-    <%= image_tag item.item_image(80, 80) %>
+    <%= image_tag item.item_image, :size => '100x100' %>
     <%= item.name %>
     <%= item.add_tax_price.to_s(:dalimited) %>
   <% end %>

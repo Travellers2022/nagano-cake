@@ -1,6 +1,6 @@
 <h3><strong>商品新規登録</strong></h3>
 
-  <%= form_with model: @item do |f| %>
+  <%= form_with model: @item, url: admin_items_path do |f| %>
     <table>
       <tr>
         <div class="form-group">

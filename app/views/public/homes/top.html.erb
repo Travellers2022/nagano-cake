@@ -9,25 +9,24 @@
         	  	  購入には会員登録が必要になります。<br>
         	    </div>
             </div>
-            
-   
+
+
 
             <h1><strong>新着商品</strong></h1>
 
             <table>
-                
+
                 <tbody>
-                    <!--<% @items.each do |item|%>-->
+                    <% @items.each do |item|%>
                         <td>
                             <div class="topbox">
                                 <%= link_to item_path(item) do %>
-                                    <%= image_tag item, :item_image, size: %>
+                                    <%= image_tag item.item_image, :size => '100x100' %>
                                 <% end %>
                             </div><br>
                             <div class="name">
                                 <%= link_to item_path(item) do %>
-                                    <%= f.label:商品名 %>
-                                    <%= item_name %>
+                                    <%= item.name %>
                                     ¥ <%= item.price_without_tax.to_s(:delimited) %>
                                 <% end %>
                             </div>
@@ -36,7 +35,7 @@
                 </tbody>
             </table>
             <p align="right"><%= link_to "全ての商品を見る", items_path %></p>
-            
+
 
         </div>
     </div>
