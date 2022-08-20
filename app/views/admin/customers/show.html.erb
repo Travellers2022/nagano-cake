@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3 offset-md-1 mb-5 mt-5">
+    <div class="col-md-5 mb-5 mt-5">
       <h3><%= "#{@customer.last_name}#{@customer.first_name}" %>さんの会員詳細</h3>
     </div>
   </div>
@@ -38,7 +38,11 @@
         </tr>
         <tr>
           <th>会員ステータス</th>
-          <td><%= @customer.is_deleted %></td>
+          <% if @customer.is_deleted == true %>
+            <td class="text-secondary font-weight-bold">退会</td>
+          <% else %>
+            <td class="text-success font-weight-bold">有効</td>
+          <% end %>
         </tr>
       </table>
     </div>
