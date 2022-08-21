@@ -1,5 +1,15 @@
 class Public::CartItemsController < ApplicationController
+
+  before_action :authenticate_customer!
+
+  def create
+    cart_item = CartItem.new(cart_item_params)
+    cart_item.save
+    redirect_to cart_items_path
+  end
+
   def index
+    @cart_items = CartItem.all
   end
 
   def update
@@ -14,6 +24,11 @@ class Public::CartItemsController < ApplicationController
   def all_destroy
   end
 
-  def create
+
+  private
+
+  def cart_item_params
+    params.require(:cart_item).permit(:item_id, :quantity)
   end
+
 end

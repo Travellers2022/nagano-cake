@@ -5,7 +5,7 @@
     </div>
   </div>
 
-    <%= form_with model: @customer, url: customer_information_path, method: :patch do |f| %>
+    <%= form_with model: @customer, url: information_path, method: :patch do |f| %>
       <!--%= render "public/shared/error_messages", resource: resource %>-->
 
         <div class="field">
@@ -46,6 +46,6 @@
 
     <% end %>
 
-    <%= link_to "退会する", customer_unsubscribe_path(@customer.id), class: 'btn btn-danger btn-sm mt-2' %>
+    <%= link_to "退会する", unsubscribe_path(@customer.id), class: 'btn btn-danger btn-sm mt-2' %>
 
   </div>
