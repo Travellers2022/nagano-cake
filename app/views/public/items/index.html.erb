@@ -9,7 +9,7 @@
 
   <h2>商品一覧</h2>
   <p>全<%= @items.count %>件</p>
-  
+
   <% @items.each do |item| %>
     <%= image_tag item.item_image(80, 80) %>
     <%= item.name %>
