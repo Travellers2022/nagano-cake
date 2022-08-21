@@ -14,13 +14,11 @@ Rails.application.routes.draw do
     get '/about' => 'homes#about'
     resources :items, only: [:index, :show]
 
-    resources :customers do
       get '/my_page' => 'customers#show'
       get '/information/edit' => 'customers#edit'
       patch '/information' => 'customers#update'
       get '/unsubscribe' => 'customers#unsubscribe'
       patch '/withdraw' => 'customers#withdraw'
-    end
 
     resources :cart_items, only: [:index, :update, :create, :destroy] do
       delete 'cart_items/all_destroy' => 'cart_items#all_destroy'
