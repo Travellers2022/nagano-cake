@@ -6,4 +6,6 @@ class Item < ApplicationRecord
   def add_tax_price
     (self.price_without_tax * 1.10).round
   end
+  
+  
 end
