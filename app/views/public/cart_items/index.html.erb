@@ -8,7 +8,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row justify-content-center">
     <%= form_with model: @cart_item, method: :patch do |f| %>
     <table class="table">
       <thead>
@@ -49,7 +49,7 @@
     <% end %>
   </div>
 
-  <div class="row justify-content-between">
+  <div class="row justify-content-center">
     <div class="col-4">
       <%= link_to "買い物を続ける", root_path, class: 'btn btn-primary btn-sm' %>
     </div>
@@ -59,6 +59,12 @@
           <th>合計金額</th>
           <td><%= @total.round.to_s(:delimited)%></td>
         </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-3">
+      <p class="text-center"><%= link_to "情報入力に進む", new_order_path, class: 'btn btn-success' %></p>
     </div>
   </div>
 
