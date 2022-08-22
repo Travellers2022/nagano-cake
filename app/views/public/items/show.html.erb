@@ -16,8 +16,11 @@
         <td><h2><%= @item.name %></h2></td>
         <td><p><%= @item.explanation %></p></td>
         <td><p>￥<%= @item.add_tax_price.to_s(:dalimited) %>(税込)</p></td>
-        <% if @item.is_sale == true %>
-          <%= form_with model: @cart_item,url: cart_items_path, local: true do |f| %>
+     </tr>
+    </div>
+  </table>
+          <% if @item.is_sale == true %>
+          <%= form_with model: @cart_item, url: cart_items_path, method: :post, local: true do |f| %>
             <td>
               <%= f.hidden_field :item_id, :value => @item.id %>
               <%= f.select :quantity, *[1..10], {include_blank: '個数選択'} %>
@@ -25,6 +28,3 @@
             </td>
           <% end %>
         <% end %>
-      </tr>
-    </div>
-  </table>
