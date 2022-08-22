@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row justify-content-between">
     <div class="col-4 mt-5 mb-5">
       <h3>ショッピングカート</h3>
     </div>
@@ -9,6 +9,7 @@
   </div>
 
   <div class="row">
+    <%= form_with model: @cart_item, method: :patch do |f| %>
     <table class="table">
       <thead>
         <tr>
@@ -25,20 +26,27 @@
         <tr>
 
           <td>
-            <%= cart_item.name %>
+            <%= cart_item.item.name %>
           </td>
           <td>
-            <%= cart_item.price_without_tax.add_tax_price %>
+            <%= cart_item.item.add_tax_price %>
           </td>
           <td>
-            < cart_item.quantity %>
+            <%= f.select :quantity, *[1..10], {selected: cart_item.quantity.to_i} %>
+            <%= f.submit "更新", class: 'btn btn-success btn-sm' %>
           </td>
-          <td>削除する</td>
+          <td>
+            <%= cart_item.subtotal %>
+          </td>
+          <td>
+            <%= link_to "削除する", cart_item_path(cart_item.id), method: :delete, class: 'btn btn-danger btn-sm' %>
+          </td>
 
         </tr>
         <% end %>
       </tbody>
     </table>
+    <% end %>
   </div>
 
   <div class="row justify-content-between">
@@ -46,7 +54,11 @@
       <%= link_to "買い物を続ける", root_path, class: 'btn btn-primary btn-sm' %>
     </div>
     <div class="col4">
-      <p>合計金額</p>
+      <table class="table">
+        <tr>
+          <th>合計金額</th>
+          <td><%= @total.round.to_s(:delimited)%></td>
+        </tr>
     </div>
   </div>
 
