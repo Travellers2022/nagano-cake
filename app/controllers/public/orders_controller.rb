@@ -10,6 +10,9 @@ class Public::OrdersController < ApplicationController
 
   def confirm
     @order = Order.new(order_params)
+    @cart_items = current_costomer.cart_items.all
+    @order.postage = 800
+    @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
 
     # ご自身の住所の場合
     if params[:order][:address_number] == "1"
@@ -45,11 +48,6 @@ class Public::OrdersController < ApplicationController
       render 'new'
       flash[:notice] = "お届け先のボタンを押してください"
     end
-    # @cart_items = current_customer.cart_items.all
-    # @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
-    # @order.total_payment = @cart_items.inject(800) { |sum, item| sum + item.subtotal}
-    # @cost = 800
-
   end
 
   def complete
