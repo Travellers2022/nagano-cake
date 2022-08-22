@@ -48,6 +48,8 @@ class Public::OrdersController < ApplicationController
       render 'new'
       flash[:notice] = "お届け先のボタンを押してください"
     end
+    
+
   end
 
   def complete
