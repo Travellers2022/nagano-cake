@@ -1,28 +1,49 @@
-<h3><strong>商品詳細</strong></h3>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 offset-md-1 mb-5 mt-5">
+        <h3><span style="background-color:#dcdcdc">商品詳細</span></h3>
+      <div>
+    <div>
 
-<div class="image">
-  <%= image_tag @item.item_image, :size => '100x100' %>
-</div>
-<div>
-  <p>
-    商品名 <%= @item.name %>
-  </p>
-  <P>
-    商品説明 <%= @item.explanation %>
-  </P>
-  <p>
-    ジャンル <%= @item.genre.name %>
-  </p>
-  <p>
-    税込価格（税抜価格）<%= @item.add_tax_price.to_s(:dalimited) %>(<%= @item.price_without_tax %>)円
-  </p>
-  <p>
-    販売ステータス
-    <% if @item.is_sale == true %>
-      販売中
-    <% else %>
-      販売停止
-    <% end %>
-  </p>
-  <%= link_to "編集する", edit_admin_item_path(@item.id), class: "btn btn-success" %>
-</div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="image">
+          <%= image_tag @item.item_image, :size => '100x100' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <table class="table table-borderless">
+          <tr>
+            <th>商品名</th>
+            <td><%= @item.name %></td>
+          </tr>
+          <tr>
+            <th>商品説明</th>
+            <td><%= @item.explanation %></td>
+          </tr>
+          <tr>
+            <th>ジャンル</th>
+            <td><%= @item.genre.name %></td>
+          </tr>
+          <tr>
+            <th>税込価格（税抜価格）</th>
+            <td><%= @item.add_tax_price.to_s(:dalimited) %>(<%= @item.price_without_tax %>)円</td>
+          </tr>
+          <tr>
+            <th>販売ステータス</th>
+            <td>
+              <% if @item.is_sale == true %>
+                販売中
+              <% else %>
+                販売停止
+              <% end %>
+            </td>
+          </tr>
+        </table>
+        <%= link_to "編集する", edit_admin_item_path(@item.id), class: "btn btn-success" %>
+      </div>
+    </div>
+  </div>

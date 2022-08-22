@@ -1,17 +1,34 @@
-  <div class="border border-dark">
-    <p>ジャンル検索</p>
-  </div>
-  <div class="border border-dark">
-    <% @genres.each do |genre| %>
-      <%= genre.name %>
-    <% end %>
-  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2">
+        <div class="border border-dark">
+          <p>ジャンル検索</p>
+        </div>
+        <div class="border border-dark">
+          <% @genres.each do |genre| %>
+            <%= genre.name %>
+          <% end %>
+        </div>
+      </div>
+    </div>
 
-  <h2>商品一覧</h2>
-  <p>全<%= @items.count %>件</p>
+    <div class="row mb-3">
+      <h3><strong>商品一覧</strong></h3>
+      <p>全<%= @items.count %>件</p>
+    </div>
 
-  <% @items.each do |item| %>
-    <%= image_tag item.item_image, :size => '100x100' %>
-    <%= item.name %>
-    <%= item.add_tax_price.to_s(:dalimited) %>
-  <% end %>
+    <div class="row">
+      <div class="col-md-7 d-flex flex-wrap">
+        <% @items.each do |item| %>
+          <%= image_tag item.item_image, :size => '100x100' %>
+          <%= item.name %></br>
+          ￥<%= item.add_tax_price.to_s(:dalimited) %>
+        <% end %>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-2 align-self-center">
+        <%= paginate @items %>
+      </div>
+    </div>
+  </div>

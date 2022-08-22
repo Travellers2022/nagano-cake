@@ -1,30 +1,36 @@
-  <div class="border border-dark">
-    <p>ジャンル検索</p>
-  </div>
-  <div class="border border-dark">
-    <% @genres.each do |genre| %>
-      <%= genre.name %>
-    <% end %>
-  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2">
+        <div class="border border-dark">
+          <p>ジャンル検索</p>
+        </div>
+        <div class="border border-dark">
+          <% @genres.each do |genre| %>
+            <%= genre.name %>
+          <% end %>
+        </div>
+      </div>
+    </div>
 
-  <div class="image">
-    <%= image_tag @item.item_image, :size => '100x100' %>
-  </div>
-  <table>
-    <div>
-      <tr>
-        <td><h2><%= @item.name %></h2></td>
-        <td><p><%= @item.explanation %></p></td>
-        <td><p>￥<%= @item.add_tax_price.to_s(:dalimited) %>(税込)</p></td>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="image">
+          <%= image_tag @item.item_image, :size => '100x100' %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 offset-1">
+        <h4><strong><%= @item.name %></strong></h4>
+        <p><%= @item.explanation %></p>
+        <h4><strong>￥<%= @item.add_tax_price.to_s(:dalimited) %>(税込</strong>)</p>
         <% if @item.is_sale == true %>
           <%= form_with model: @cart_item,url: cart_items_path, local: true do |f| %>
-            <td>
-              <%= f.hidden_field :item_id, :value => @item.id %>
-              <%= f.select :quantity, *[1..10], {include_blank: '個数選択'} %>
-              <%= f.submit "カートに入れる", class: "btn btn-success" %>
-            </td>
+            <%= f.hidden_field :item_id, :value => @item.id %>
+            <%= f.select :quantity, *[1..10], {include_blank: '個数選択'}, class: "mx-5 my-4" %>
+            <%= f.submit "カートに入れる", class: "btn btn-success", class: "mx-5 my-4" %>
           <% end %>
         <% end %>
-      </tr>
+      </div>
     </div>
   </table>
