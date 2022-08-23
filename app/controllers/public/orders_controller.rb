@@ -29,10 +29,10 @@ class Public::OrdersController < ApplicationController
             redirect_to new_order_path
       else
         @order = Order.new
-        @shipping_address = ShippingAddress.find(params[:order][:customer_id])
-        @order.post_code = @shipping_address.post_code
-        @order.address = @shipping_address.address
-        @order.name = @shipping_address.name
+        @shipping_address = ShippingAddress.find(params[:order][:address_id])
+        @order.postal_code = @shipping_address.postal_code
+        @order.shipping_address = @shipping_address.address
+        @order.shipping_name = @shipping_address.name
         @order.payment_method = params[:order][:payment_method]
       end
 
@@ -41,8 +41,8 @@ class Public::OrdersController < ApplicationController
     else
       @order = Order.new
       @order.postal_code = params[:order][:postal_code]
-      @order.address = params[:order][:address]
-      @order.name = params[:order][:name]
+      @order.shipping_address = params[:order][:address]
+      @order.shipping_name = params[:order][:name]
       @order.payment_method = params[:order][:payment_method]
     end
   end
