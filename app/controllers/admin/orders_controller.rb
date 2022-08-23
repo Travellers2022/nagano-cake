@@ -7,6 +7,9 @@ class Admin::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @order_items = @order.order_items.all
+    @sum = 0
+    @subtotals = @order_items.map { |order_item| order_item.add_tax_price * order_item.quantity }
+    @sum = @subtotals.sum
   end
 
   def update
