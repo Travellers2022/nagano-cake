@@ -10,8 +10,7 @@ class Public::OrdersController < ApplicationController
 
   def confirm
     @order = Order.new(order_params)
-    @cart_items = current_customer.cart_items
-     
+    @cart_items = current_customer.cart_items.all
     @order.postage = 800
     @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
 
@@ -19,8 +18,8 @@ class Public::OrdersController < ApplicationController
     if params[:order][:address_number] == "0"
           @order = Order.new
           @order.postal_code = current_customer.postal_code
-          @order.address = current_customer.address
-          @order.name = current_customer.first_name + current_customer.last_name
+          @order.shipping_address = current_customer.address
+          @order.shipping_name = current_customer.first_name + current_customer.last_name
           @order.payment_method = params[:order][:payment_method]
 
     # 登録済み配送先の場合
@@ -38,8 +37,8 @@ class Public::OrdersController < ApplicationController
       end
 
     #新しいお届け先の場合
-    else 
-      params[:order][:address_number] == "2"
+
+    else
       @order = Order.new
       @order.postal_code = params[:order][:postal_code]
       @order.address = params[:order][:address]
@@ -55,7 +54,7 @@ class Public::OrdersController < ApplicationController
    @order = Order.new(order_params)
    @order.customer_id = current_customer.id
    @cart_items = current_customer.cart_items.all
-   
+
    @order.save
    current_costomer.cart_items.each do |cart_item|
      order_item = OrderItem.new
