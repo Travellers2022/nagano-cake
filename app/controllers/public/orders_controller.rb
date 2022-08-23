@@ -37,8 +37,9 @@ class Public::OrdersController < ApplicationController
       end
 
     #新しいお届け先の場合
+
     else
-      @order = Order.new  == "2"
+      @order = Order.new
       @order.postal_code = params[:order][:postal_code]
       @order.address = params[:order][:address]
       @order.name = params[:order][:name]
