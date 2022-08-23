@@ -1,34 +1,38 @@
   <div class="container">
     <div class="row">
-      <div class="col-md-2">
+      <div class="col-lg-2">
         <div class="border border-dark">
-          <p>ジャンル検索</p>
+          <table>
+            <tr>
+              <td>
+                ジャンル検索
+              </td>
+            </tr>
+          </table>
         </div>
         <div class="border border-dark">
-          <% @genres.each do |genre| %>
-            <%= genre.name %>
+          <div class="text-center">
+            <% @genres.each do |genre| %>
+              <%= genre.name %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <h4><strong>商品一覧</strong></h4>
+        <p>(全<%= @items.count %>件)</p>
+        <div class="col-md-9 d-flex flex-wrap">
+          <% @items.each do |item| %>
+            <%= image_tag item.item_image, :size => '100x100' %><br>
+            <%= item.name %></br>
+            ￥<%= item.add_tax_price.to_s(:dalimited) %>
           <% end %>
         </div>
       </div>
     </div>
-
-    <div class="row mb-3">
-      <h3><strong>商品一覧</strong></h3>
-      <p>全<%= @items.count %>件</p>
-    </div>
-
-    <div class="row">
-      <div class="col-md-7 d-flex flex-wrap">
-        <% @items.each do |item| %>
-          <%= image_tag item.item_image, :size => '100x100' %>
-          <%= item.name %></br>
-          ￥<%= item.add_tax_price.to_s(:dalimited) %>
-        <% end %>
-      </div>
-    </div>
     <div class="row justify-content-center">
       <div class="col-2 align-self-center">
-        <%= paginate @items %>
+        <br><%= paginate @items %>
       </div>
     </div>
   </div>

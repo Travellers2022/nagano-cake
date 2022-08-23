@@ -44,7 +44,6 @@ class Public::OrdersController < ApplicationController
       @order.name = params[:order][:name]
       @order.payment_method = params[:order][:payment_method]
     end
-    
   end
 
   def complete
