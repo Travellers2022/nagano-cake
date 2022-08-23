@@ -36,8 +36,8 @@ class Public::OrdersController < ApplicationController
     #新しいお届け先の場合
     elsif params[:order][:address_number] == "3"
       @order.post_code = params[:order][:post_code]
-      @order.address = params[:order][:address]
-      @order.name = params[:order][:name]
+      @order.shipping_address = params[:order][:shipping_address]
+      @order.shipping_name = params[:order][:shipping_name]
 
       if params[:order][:post_code] == "" || params[:order][:address] == "" || params[:order][:name] == ""
           flash[:notice] = "新しいお届け先を全て入力してください"
@@ -83,7 +83,7 @@ class Public::OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:name, :address, :payment_method, :postal_code, :bill, :postage)
+    params.require(:order).permit(:shipping_name, :shipping_address, :payment_method, :postal_code, :bill, :postage)
   end
 
   def address_params

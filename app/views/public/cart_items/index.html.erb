@@ -9,7 +9,8 @@
   </div>
 
   <div class="row justify-content-center">
-    <%= form_with model: @cart_item, method: :patch do |f| %>
+    <% @cart_items.each do |cart_item| %>
+    <%= form_with model: cart_item, url: cart_item_path(cart_item), method: :patch do |f| %>
     <table class="table">
       <thead>
         <tr>
@@ -22,7 +23,6 @@
       </thead>
 
       <tbody>
-        <% @cart_items.each do |cart_item| %>
         <tr>
 
           <td>
@@ -43,12 +43,12 @@
           </td>
 
         </tr>
-        <% end %>
+
       </tbody>
     </table>
     <% end %>
+    <% end %>
   </div>
-
   <div class="row justify-content-center">
     <div class="col-4">
       <%= link_to "買い物を続ける", root_path, class: 'btn btn-primary btn-sm' %>
