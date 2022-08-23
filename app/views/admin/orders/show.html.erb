@@ -57,9 +57,9 @@
                     <% @order.order_items.each do |order_item| %>
                     <tr>
                         <td><%= order_item.item.name %></td>
-                        <td><%= order_item.item.add_tax_price.to_s(:delimited) %></td>
-                        <td><%= order_item.quantity %></td>
-                        <td><%= order_item.subtotal.to_s(:delimited) %></td>
+                        <td><%= order_item.item.add_tax_price.to_s(:delimited) %>円</td>
+                        <td><%= order_item.quantity %>個</td>
+                        <td><%= order_item.subtotal.to_s(:delimited) %>円</td>
                         <td>
                             <% form_with model: order_item, url: admin_order_item_path(order_item), method: :patch do |f|%>
                                 <%= f.select :production_status, OrderItem.production_statuses_i18n.invert, {prompt: false}  %>
@@ -73,15 +73,14 @@
         </div>
         
         <div class="col-lg-3 col align-self-end mb-3"style="margin-left: 8vh;">
-            <% @postage = 800 %>
             <table>
                 <tr>
                     <th>商品合計</th>
-                    <td>&ensp;&ensp;<%= @order.order_items.add_tax_price.to_s(:delimited)　%>円</td>
+                    <td>&ensp;&ensp;<%=  @sum.to_s(:delimited)　%>円</td>
                     <th>送料</th>
-                    <td><%= @postage %>円</td>
+                    <td><%= @order.postage %>円</td>
                     <th>請求金額合計</th>
-                    <td><%= @order.bill.to_s(:delimited) %>円</td>
+                    <td>><%= @sum + @order.postage.to_s(:delimited) %>円</td>
                 </tr>
             </table>
         </div>

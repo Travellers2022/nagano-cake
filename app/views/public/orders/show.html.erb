@@ -32,13 +32,36 @@
             </table>
         </div>
         
+        <div class="col-lg-7">
+            <table>
+                <h4>注文内容</h4>
+                <thead>
+                    <tr>
+                         <th>商品</th>
+                         <th>単価(税込）</th>
+                         <th>個数</th>
+                         <th>小計</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @order.order_items.each do |order_item| %>
+                        <tr>
+                            <td><%= order_item.name %></td>
+                            <td><%= order_item.add_tax_price %>円</td>
+                            <td><%= order_item.quantity%></td>
+                            <td><%= (order_item.add_tax_price*order_item.quantity).to_s(:delimited) %>円</td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
         
         <div class="col-lg-3">
             <table>
                 <h4>請求情報</h4>
                 <tr>
                     <th>商品合計</th>
-                    <td><%= @order.items_price_without_tax %>円</td>
+                    <td><%= @sum %>円</td>
                 </tr>
                 <tr>
                     <th>配送料</th>
@@ -48,30 +71,6 @@
                     <th><strong>ご請求金額</strong></th>
                     <td><%= @order.bill.to_s(:delimited) %>円</td>
                 </tr>
-            </table>
-        </div>
-        
-        <div class="col-lg-7">
-            <table>
-                <h4>注文内容</h4>
-                <thead>
-                    <tr>
-                         <th>商品</th>
-                         <th>単価</th>
-                         <th>個数</th>
-                         <th>小計</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% @order.order_items.each do |order_item| %>
-                        <tr>
-                            <td><%= order_item.name %></td>
-                            <td><%= order_item.subprice %>円</td>
-                            <td><%= order_item.quantity%></td>
-                            <td><%= (order_item.subprice*order_item.quantity).to_s(:delimited) %>円</td>
-                        </tr>
-                    <% end %>
-                </tbody>
             </table>
         </div>
     </div>
