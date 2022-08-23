@@ -2,7 +2,7 @@
     <div class="row">
       <div class="col-md-2">
         <div class="border border-dark">
-          <p>ジャンル検索</p>
+          <p class="text-center">ジャンル検索</p>
         </div>
         <div class="border border-dark">
           <% @genres.each do |genre| %>
@@ -10,21 +10,17 @@
           <% end %>
         </div>
       </div>
-    </div>
 
-
-    <div class="row">
       <div class="col-md-4">
         <div class="image">
           <%= image_tag @item.item_image, :size => '100x100' %>
         </div>
       </div>
-    </div>
-    <div class="row">
+
       <div class="col-md-4 offset-1">
         <h4><strong><%= @item.name %></strong></h4>
         <p><%= @item.explanation %></p>
-        <h4><strong>￥<%= @item.add_tax_price.to_s(:dalimited) %>(税込</strong>)</p>
+        <h4><strong>￥<%= @item.add_tax_price.to_s(:dalimited) %>(税込)</strong></h4>
         <% if @item.is_sale == true %>
           <%= form_with model: @cart_item,url: cart_items_path, local: true do |f| %>
             <%= f.hidden_field :item_id, :value => @item.id %>
@@ -34,3 +30,4 @@
         <% end %>
       </div>
     </div>
+  </div>

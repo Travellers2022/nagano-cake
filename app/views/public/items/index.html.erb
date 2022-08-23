@@ -1,23 +1,26 @@
   <div class="container">
-    <div class="row">
+    <div class="row mb-3">
       <div class="col-md-2">
         <div class="border border-dark">
-          <p>ジャンル検索</p>
+          <table>
+            <tr>
+              <td>
+                ジャンル検索
+              </td>
+            </tr>
+          </table>
         </div>
         <div class="border border-dark">
-          <% @genres.each do |genre| %>
-            <%= genre.name %>
-          <% end %>
+          <div class="text-center">
+            <% @genres.each do |genre| %>
+              <%= genre.name %>
+            <% end %>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row mb-3">
-      <h3><strong>商品一覧</strong></h3>
+      <h4><strong>商品一覧</strong></h4>
       <p>全<%= @items.count %>件</p>
-    </div>
-
-    <div class="row">
       <div class="col-md-7 d-flex flex-wrap">
         <% @items.each do |item| %>
           <%= image_tag item.item_image, :size => '100x100' %>
