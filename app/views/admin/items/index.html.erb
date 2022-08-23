@@ -5,12 +5,12 @@
       </div>
     </div>
 
-    <div class="row justify-content-center">
+    <div class="row  justify-content-center">
       <div class="col-md-8">
         <div class="row justify-content-end">
           <%= link_to "＋", new_admin_item_path %>
         </div>
-        <table class="item_table">
+        <table class="table">
           <thead>
             <tr>
               <th>商品ID</th>
@@ -32,9 +32,9 @@
                 <td><%= item.price_without_tax %></td>
                 <td><%= item.genre.name %></td>
                 <% if item.is_sale == true %>
-                  <td>販売中</td>
+                  <td class="text-success font-weight-bold">販売中</td>
                 <% else %>
-                  <td>販売停止</td>
+                  <td class="text-muted font-weight-bold">販売停止</td>
                 <% end %>
               </tr>
             <% end %>
