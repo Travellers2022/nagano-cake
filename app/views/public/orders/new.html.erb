@@ -10,23 +10,26 @@
             <%= form_with model: @order, url: confirm_orders_path, method: :post do |f| %>
                <!--支払い方法-->
 
-                <div class="form-group">
-                    <label>支払い方法</label>
+
+                <label class="font-weight-bold">支払い方法</label>
+                    <div class="form-group">
                         <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
                         <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card] %>
+                    <div class="form-group">
+                    <div class="form-group">
                         <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
                         <%= f.label :payment_method, Order.payment_methods_i18n[:transfer]%>
-                </div>
+                    <div class="form-group">
 
                 <!--ご自身の住所-->
-                <div class="form-group">
-                    <label>お届け先</label>
-                    <%= f.radio_button :address_number, 0, checked: true %>
-                    <%= f.label "ご自身の住所" %>
-                    &emsp;&emsp;<%= "#{current_customer.postal_code} #{current_customer.address}" %>
-                    <br>
-                    &emsp;&emsp;<%= "#{current_customer.last_name} #{current_customer.first_name}" %>
-                </div>
+                <label class="font-weight-bold">お届け先</label>
+                    <div class="form-group">
+                        <%= f.radio_button :address_number, 0, checked: true %>
+                        <%= f.label "ご自身の住所" %>
+                        &emsp;&emsp;<%= "#{current_customer.postal_code} #{current_customer.address}" %>
+                        <br>
+                        &emsp;&emsp;<%= "#{current_customer.last_name} #{current_customer.first_name}" %>
+                    </div>
 
 
                 <!--登録先住所から選択-->
