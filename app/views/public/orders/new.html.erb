@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col">
 
-            <%= form_with model: @order, url: order_orders_confirm_path(:order_id), method: :post do |f| %>
+            <%= form_with model: @order, url: confirm_orders_path, method: :post do |f| %>
                <!--支払い方法-->
 
                 <div class="form-group">
