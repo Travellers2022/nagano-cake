@@ -7,19 +7,19 @@ class Admin::OrderItemsController < ApplicationController
     # @is_make = true
     
     @order_item.update(production_status: params[:order_item][:production_status])
-      if @order_item.making_status == "now"
-        @order.update(status: "now")
+      if @order_item.production_status == "now"
+        @order.update(order_status: "making")
       end
       
       count = 0
       @order_items.each do |order_item|
-        if order_detail.production_status == "finish"
+        if order_item.production_status == "finish"
           count += 1
         end
       end
       
        if count == @order_items.count
-         @order.update(status: "wait")
+         @order.update(order_status: "wait")
        end
       redirect_to admin_order_path(@order.id)
   
