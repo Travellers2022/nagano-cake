@@ -1,12 +1,12 @@
 class Admin::OrdersController < ApplicationController
-  
+
   def index
-     @orders = Order.all.page(params[:page])
+     @orders = Order.all.order(id: "DESC").page(params[:page]).per(10)
   end
-  
+
   def show
     @order = Order.find(params[:id])
-   
+
   end
 
   def update
@@ -20,9 +20,9 @@ class Admin::OrdersController < ApplicationController
       render :show
     end
   end
-  
+
   private
-  
+
   def order_params
     params.require(:order).permit(:order_status)
   end

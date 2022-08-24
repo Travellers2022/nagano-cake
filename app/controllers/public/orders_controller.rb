@@ -4,8 +4,12 @@ class Public::OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    @customer = Customer.find(current_customer.id)
-    @shipping_addresses = current_customer.shipping_addresses.all
+    @address = ShippingAddress.new
+
+    # 以下必要？
+    # @customer = Customer.find(current_customer.id)
+    # @shipping_addresses = current_customer.shipping_addresses.all
+
   end
 
   def confirm
@@ -19,7 +23,7 @@ class Public::OrdersController < ApplicationController
           @order = Order.new
           @order.postal_code = current_customer.postal_code
           @order.shipping_address = current_customer.address
-          @order.shipping_name = current_customer.first_name + current_customer.last_name
+          @order.shipping_name = current_customer.last_name + current_customer.first_name
           @order.payment_method = params[:order][:payment_method]
 
     # 登録済み配送先の場合
@@ -38,11 +42,11 @@ class Public::OrdersController < ApplicationController
 
     #新しいお届け先の場合
 
-    else
+    else params[:order][:address_number] == "2"
       @order = Order.new
       @order.postal_code = params[:order][:postal_code]
-      @order.shipping_address = params[:order][:address]
-      @order.shipping_name = params[:order][:name]
+      @order.shipping_address = params[:order][:shipping_address]
+      @order.shipping_name = params[:order][:shipping_name]
       @order.payment_method = params[:order][:payment_method]
     end
   end
@@ -65,7 +69,7 @@ class Public::OrdersController < ApplicationController
      order_item.order_id = @order.id
      order_item.save
    end
-  
+
 
    redirect_to complete_orders_path
 

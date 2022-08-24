@@ -23,8 +23,10 @@
         <p>(全<%= @items.count %>件)</p>
         <div class="col-md-9 d-flex flex-wrap">
           <% @items.each do |item| %>
-            <%= image_tag item.item_image, :size => '100x100' %><br>
-            <%= item.name %></br>
+            <%= link_to item_path(item.id) do %>
+              <%= image_tag item.item_image, :size => '100x100' %><br>
+              <%= item.name %>
+            <% end %>
             ￥<%= item.add_tax_price.to_s(:dalimited) %>
           <% end %>
         </div>
