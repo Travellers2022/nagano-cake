@@ -56,16 +56,17 @@ class Public::OrdersController < ApplicationController
    @cart_items = current_customer.cart_items.all
 
    @order.save
-   @cart_items  = current_customer.cart_items
-   @cart_items.each do |cart_item|
+
+   current_customer.cart_items.each do |cart_item|
      order_item = OrderItem.new
      order_item.item_id = cart_item.item.id
      order_item.quantity = cart_item.quantity
      order_item.subprice = cart_item.item.add_tax_price
      order_item.save
    end
-   redirect_to order_orders_complete_path
-   @cart_items.destroy
+
+   redirect_to order_orders_complete_path(@order.id)
+   current_customer.cart_items.destroy
   end
 
   def index
