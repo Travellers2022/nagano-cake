@@ -25,8 +25,10 @@ Rails.application.routes.draw do
     end
 
     resources :orders, only: [:new, :create, :index, :show] do
-      post 'orders/confirm' => 'orders#confirm'
-      get 'orders/complete' => 'orders#complete'
+      collection do
+        post '/confirm' => 'orders#confirm'
+        get '/complete' => 'orders#complete'
+      end
     end
 
     resources :shipping_addresses, only: [:index, :edit, :create, :update, :destroy]
@@ -39,7 +41,7 @@ Rails.application.routes.draw do
     resources :items, except: [:destroy]
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
-    resources :orders, only: [:show, :update]
+    resources :orders, only: [:show, :update, :index]
     resources :order_items, only: [:update]
   end
 end
