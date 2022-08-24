@@ -62,6 +62,7 @@ class Public::OrdersController < ApplicationController
      order_item.item_id = cart_item.item.id
      order_item.quantity = cart_item.quantity
      order_item.subprice = cart_item.item.add_tax_price
+     order_item.order_id = @order.id
      order_item.save
    end
   
@@ -77,6 +78,9 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @order_items = @order.order_items.all
+    @cart_items = current_customer.cart_items.all
+    @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
 
   end
 

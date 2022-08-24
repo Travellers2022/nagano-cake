@@ -6,9 +6,7 @@ class Admin::OrdersController < ApplicationController
   
   def show
     @order = Order.find(params[:id])
-    @order_items = @order.order_items.all
-    @cart_items = current_customer.cart_items.all
-    @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
+   
   end
 
   def update
