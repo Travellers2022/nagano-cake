@@ -10,7 +10,7 @@ class Public::OrdersController < ApplicationController
 
   def confirm
     @order = Order.new(order_params)
-    @cart_items = current_customer.cart_items.all
+    @cart_items = current_customer.cart_items
     @order.postage = 800
     @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
 
@@ -56,6 +56,7 @@ class Public::OrdersController < ApplicationController
    @cart_items = current_customer.cart_items.all
 
    @order.save
+
    current_customer.cart_items.each do |cart_item|
      order_item = OrderItem.new
      order_item.item_id = cart_item.item.id
@@ -63,6 +64,7 @@ class Public::OrdersController < ApplicationController
      order_item.subprice = cart_item.item.add_tax_price
      order_item.save
    end
+
    redirect_to order_orders_complete_path(@order.id)
    current_customer.cart_items.destroy
   end
@@ -74,14 +76,17 @@ class Public::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @ordered_items = @order.ordered_items
-    @sum = 0
-    @subtotals = @order_items.map { |order_item| order_item.add_tax_price * order_item.quantity }
-    @sum = @subtotals.sum
+    @cart_items = current_customer.cart_items
+    @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
   end
 
   private
   def order_params
     params.require(:order).permit(:shipping_name, :shipping_address, :payment_method, :postal_code, :bill, :postage)
+  end
+  
+  def order_item_params
+    params.require(:order_item).permit(:item_id, :order_id, :quantity, :subprice, :production_status)
   end
 
   def address_params
