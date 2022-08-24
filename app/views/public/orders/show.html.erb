@@ -44,9 +44,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% @order.order_items.each do |order_item| %>
+                    <% @order_items.each do |order_item| %>
                         <tr>
                             <td><%= order_item.item.name %></td>
+                          
                             <td><%= order_item.subprice %>円</td>
                             <td><%= order_item.quantity%></td>
                             <td><%= (order_item.subprice * order_item.quantity).to_s(:delimited) %>円</td>
