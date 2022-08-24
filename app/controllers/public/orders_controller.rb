@@ -64,7 +64,10 @@ class Public::OrdersController < ApplicationController
      order_item.subprice = cart_item.item.add_tax_price
      order_item.save
    end
-   redirect_to order_orders_complete_path(@order.id)
+  
+
+   redirect_to complete_orders_path
+
    current_customer.cart_items.destroy_all
   end
 
@@ -74,16 +77,14 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @order_items = @order.order_items.all
-    @cart_items = current_customer.cart_items.all
-    @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
+
   end
 
   private
   def order_params
     params.require(:order).permit(:shipping_name, :shipping_address, :payment_method, :postal_code, :bill, :postage)
   end
-  
+
   def order_item_params
     params.require(:order_item).permit(:item_id, :order_id, :quantity, :subprice, :production_status)
   end
