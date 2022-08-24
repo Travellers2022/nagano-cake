@@ -36,7 +36,7 @@
                         <%= form_with model: @order, url: admin_order_path(@order), method: :patch  do |f| %>
 
                             <%= f.select :order_status, Order.order_statuses_i18n.invert, {prompt: false}  %>
-                            <%= f.submit "更新" %>
+                            <%= f.submit "更新", class: "btn btn-success btn-sm"%>
                         <% end %>
                     </td>
                 </tr>
