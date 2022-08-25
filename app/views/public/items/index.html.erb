@@ -26,10 +26,10 @@
             <div class="col-xs-3 mt-3 mx-3 product-photo">
               <div class="mx-auto imgWrap">
                 <%= link_to item_path(item.id) do %>
-                  <%= image_tag item.item_image, :size => '100x100' %>
+                  <%= image_tag item.item_image, :size => '200x150' %><br>
+                  <%= item.name %>
                 <% end %>
               </div>
-              <%= item.name %>
               ￥<%= item.add_tax_price.to_s(:dalimited) %>
             </div>
           <% end %>
