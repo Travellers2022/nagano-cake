@@ -2,6 +2,7 @@ class Public::ItemsController < ApplicationController
   def index
     @items = Item.page(params[:page]).per(3)
     @genres = Genre.all
+    @total_items = Item.count
   end
   def show
     @item = Item.find(params[:id])

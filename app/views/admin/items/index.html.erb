@@ -5,7 +5,7 @@
       </div>
     </div>
 
-    <div class="row  justify-content-center">
+    <div class="row">
       <div class="col-md-8">
         <div class="row justify-content-end">
           <%= link_to "＋", new_admin_item_path %>
@@ -40,12 +40,12 @@
             <% end %>
           </tbody>
         </table>
+      </div>
+    </div>
 
-        <div class="row justify-content-center">
-          <div class="col-2 align-self-center">
-            <%= paginate @items %>
-          </div>
-        </div>
+    <div class="row">
+      <div class="col-md-3 mx-auto">
+        <%= paginate @items %>
       </div>
     </div>
   </div>

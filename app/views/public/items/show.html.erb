@@ -1,10 +1,10 @@
-<div class="container">
+  <div class="container">
     <div class="row">
-      <div class="col-xs-3">
-        <table class="table table-bordered table-hover">
-          <thead>
+      <div class="col-md-2">
+        <table class="genre-table table table-bordered table-hover">
+          <thead class="genre-thead">
             <tr>
-              <th class="active text-center"><h5 class="genre_said">ジャンル検索</h5></th>
+              <th class="active">ジャンル検索</th>
             </tr>
           </thead>
           <tbody>
@@ -19,22 +19,21 @@
         </table>
       </div>
 
-
-      <div class="col-ml-5">
-          <%= image_tag @item.item_image, :size => '100x100' %>
+      <div class="col-ml-5 mr-5">
+          <%= image_tag @item.item_image, :size => '300x300' %>
       </div>
 
       <div class="col-xs-5">
         <div class="detail">
-        <h2<%= @item.name %></strong></h2>
-        <p><%= @item.explanation %></p>
+        <h4><strong><%= @item.name %></strong></h4>
+        <h5><%= @item.explanation %></h5>
         <h5><strong>￥<%= @item.add_tax_price.to_s(:dalimited) %>(税込)</strong></h5>
         <% if @item.is_sale == true %>
           <%= form_with model: @cart_item,url: cart_items_path, local: true do |f| %>
             <%= f.hidden_field :item_id, :value => @item.id %>
             <%= f.select :quantity, *[1..10], {include_blank: '個数選択'}, class: "mx-5 my-4" %>
 
-            <%= f.submit "カートに入れる", class: "btn btn-primary" %>
+            <%= f.submit "カートに入れる", class: "btn btn-success" %>
           <% end %>
         <% end %>
       </div>
