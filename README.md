@@ -4,6 +4,9 @@
 
 ![ダウンロード](https://user-images.githubusercontent.com/103346206/186650208-81d25496-c34e-4e62-84b5-8aca888e250e.png)
 
+<img width="1437" alt="スクリーンショット 2022-08-25 21 09 02" src="https://user-images.githubusercontent.com/103346206/186660534-d34734bd-5672-45f4-83ad-f1a0c2bcee34.png">
+
+
 # 概要
 
 ## 顧客側の機能
