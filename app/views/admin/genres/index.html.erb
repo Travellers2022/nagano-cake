@@ -1,21 +1,21 @@
 <div class="container">
         <div class="row">
-            <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-                <h2 class>ジャンル一覧・追加</h2>
-                    <%= form_with model: [:admin, @genre], local: false do |f| %>
-                        <%= render "layouts/errors", obj: @genre %>
+            <div class="col-md-10">
+                <h2 class="mb-3 border_bottom_dark">ジャンル一覧・追加</h2>
+                    <%= form_with model: [:admin, @genre], local: true do |f| %>
+                        <%= render "layouts/errors", model: @genre %>
                         <div class="form-group">
                             <%=f.label :ジャンル名 %>
-                            <%=f.text_field :name, placeholder: "ジャンル名" %>
+                            <%=f.text_field :name, placeholder: "ジャンル名", class:'form-control' %>
                         </div>
                         <div class="form-group">
-                        <%=f.submit "新規登録", class: "btn btn-success" %>
+                        <%=f.submit "新規登録", class: "btn btn-primary offset-md-2 " %>
                         </div>
                     <% end %>
             </div>
         </div>
         <div class="row mt-5">
-            <div class="col-5">
+            <div class="col-md-10">
                 <table class="table table-light">
                     <thead class="table-active text-center">
                         <tr>
