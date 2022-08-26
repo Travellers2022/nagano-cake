@@ -1,13 +1,13 @@
 <div class="container">
     <div class="row">
-         <div class="col-10 offset-2">
+         <div class="col-10 mb-5">
             <h3>注文履歴詳細</h3>
         </div>
     </div>
 
     <div class="row">
         <div class="col-lg-7">
-            <table>
+            <table class="table">
                 <h4>注文情報</h4>
                 <tr>
                     <th>注文日</th>
@@ -17,8 +17,8 @@
                     <th>配送先</th>
                     <td>
                         〒<%= @order.postal_code %>
-                        <%= @order.shipping_address %>
-                        <%= @order.shipping_name %>
+                        &emsp;<%= @order.shipping_address %>
+                        <br><%= @order.shipping_name %>
                     </td>
                 </tr>
                 <tr>
@@ -32,9 +32,9 @@
             </table>
         </div>
 
-        <div class="col-lg-7">
+        <div class="col-lg-7 mt-3 mb-5">
             <h4>注文内容</h4>
-            <table>
+            <table class="table">
                 <thead>
                     <tr>
                          <th>商品</th>
@@ -47,7 +47,7 @@
                     <% @order.order_items.each do |order_item| %>
                         <tr>
                             <td><%= order_item.item.name %></td>
-                            <td><%= order_item.subprice %>円</td>
+                            <td><%= order_item.subprice.to_s(:delimited) %>円</td>
                             <td><%= order_item.quantity%></td>
                             <td><%= (order_item.subprice * order_item.quantity).to_s(:delimited) %>円</td>
                         </tr>
@@ -56,8 +56,8 @@
             </table>
         </div>
 
-        <div class="col-lg-3">
-            <table>
+        <div class="col-lg-3 mt-3 mb-5">
+            <table class="table">
                 <h4>請求情報</h4>
                 <tr>
                     <th>商品合計</th>
@@ -69,7 +69,7 @@
                 </tr>
                 <tr>
                     <th><strong>ご請求金額</strong></th>
-                    <td><%= @order.bill %>円</td>
+                    <td><%= @order.bill.to_s(:delimited) %>円</td>
                 </tr>
             </table>
         </div>
