@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="row">
+    <div class="col3-md">
+      <h3 class:"p-2">会員情報編集</h3>
+    </div>
+  </div>
+
+
+      <%= form_with model: @customer, url: information_path, method: :patch do |f| %>
+
+      <table class="table　table-borderless table-sm mt-5 mb-5">
+        <div class="field">
+        <tr>
+          <th><%= f.label :名前 %></th>
+          <td><%= f.text_field :last_name %></td>
+          <td><%= f.text_field :first_name %></td>
+        </tr>
+        </div>
+
+        <div class="field">
+          <tr>
+            <th><%= f.label :フリガナ %></th>
+            <td><%= f.text_field :kana_last_name %></td>
+            <td><%= f.text_field :kana_first_name %></td>
+          </tr>
+        </div>
+
+        <div class="field">
+          <tr>
+            <th><%= f.label :郵便番号 %></th>
+            <td><%= f.text_field :postal_code %></td>
+          </tr>
+        </div>
+
+        <div class="field">
+          <tr>
+            <th><%= f.label :住所 %></th>
+            <td><%= f.text_field :address %></td>
+          </tr>
+        </div>
+
+        <div class="field">
+          <tr>
+            <th><%= f.label :電話番号 %></th>
+            <td><%= f.text_field :phone_number %></td>
+          </tr>
+        </div>
+
+        <div class="field">
+          <tr>
+            <th><%= f.label :メールアドレス %></th>
+            <td><%= f.text_field :email %></td>
+          </tr>
+        </div>
+
+        <div class="actions">
+        <tr>
+          <td><%= f.submit "編集内容を保存", class: "btn btn-success btn-sm mt-2" %></td>
+          <td><%= link_to "退会する", unsubscribe_path(@customer.id), class: 'btn btn-danger btn-sm mt-2 ml-5' %></td>
+        </tr>
+      </div>
+      </table>
+    <% end %>
+
+  </div>

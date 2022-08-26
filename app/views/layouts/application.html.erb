@@ -2,15 +2,123 @@
 <html>
   <head>
     <title>NaganoCake</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/95490e3eca.js" crossorigin="anonymous"></script>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <header class="border-bottom border-secondary border-3 mb-5">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand p-3" href="/"><%= image_tag 'logo.png', size: '150x50' %></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav ml-auto">
+              <% if customer_signed_in? %>
+              <li class="nav-item">
+                <%= link_to my_page_path, class: 'nav-link text-dark' do %>
+                  <i class="fa-solid fa-circle-user"></i>
+                  マイページ
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to items_path, class: 'nav-link text-dark' do %>
+                  <i class="fa-solid fa-cake-candles"></i>
+                  商品一覧
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to cart_items_path, class: 'nav-link text-dark' do %>
+                  <i class="fa-solid fa-cart-shopping"></i>
+                  カート
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' do %>
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                ログアウト
+                <% end %>
+              </li>
+
+              <% elsif admin_signed_in? %>
+              <li class="nav-item">
+                <%= link_to "商品一覧", admin_items_path, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "会員一覧", admin_customers_path, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "注文履歴一覧", admin_orders_path, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
+              </li>
+
+
+              <% else %>
+              <li class="nav-item">
+                <%= link_to about_path, class: 'nav-link text-dark' do %>
+                  <i class="fas fa-link"></i>
+                  About
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to items_path, class: 'nav-link text-dark' do %>
+                  <i class="fa-solid fa-cake-candles"></i>
+                  商品一覧
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to new_customer_registration_path, class: 'nav-link text-dark' do  %>
+                  <i class="fas fa-user-plus"></i>
+                  新規登録
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to new_customer_session_path, class: 'nav-link text-dark' do %>
+                  <i class="fas fa-sign-in-alt"></i>
+                  ログイン
+                <% end %>
+              </li>
+              <% end %>
+              </ul>
+            </div>
+        </div>
+      </nav>
+
+      <div class="container">
+        <div class="row justify-content-end mb-2">
+          <div class="col-md-3">
+            <% if customer_signed_in? %>
+              ようこそ、<%= current_customer.last_name %><%= current_customer.first_name %>さん
+            <% end %>
+            <%= form_with url:admin_items_path do |f| %>
+              <%= f.text_field :search, placeholder: "Search" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+    </header>
+
+    <main>
+      <%= yield %>
+    </main>
+
+    <footer>
+
+    </footer>
+
   </body>
 </html>

@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <h2 class:"p-5">管理者ログイン</h2>
+  </div>
+
+<%= form_with model:@admin,url: admin_session_path do |f| %>
+  <div class="field">
+    <%= f.label :"メールアドレス" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :"パスワード" %>
+    <%= f.password_field :password, autocomplete: "current-password" %>
+  </div>
+
+  <div class="actions pt-2">
+    <%= f.submit "Log in", class:"btn btn-primary btn-sm" %>
+  </div>
+<% end %>
+
+</div>
