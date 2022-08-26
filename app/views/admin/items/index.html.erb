@@ -31,7 +31,7 @@
                     <%= item.name %>
                   <% end %>
                 </td>
-                <td><%= item.price_without_tax %></td>
+                <td><%= item.price_without_tax.to_s(:delimited) %></td>
                 <td><%= item.genre.name %></td>
                 <% if item.is_sale == true %>
                   <td class="text-success font-weight-bold">販売中</td>

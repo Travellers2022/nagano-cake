@@ -11,7 +11,7 @@
         </div>
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-5">
         <table class="table table-borderless">
           <tr>
             <td>商品名</td>
@@ -27,7 +27,7 @@
           </tr>
           <tr>
             <td>税込価格（税抜価格）</td>
-            <td><%= @item.add_tax_price.to_s(:dalimited) %>(<%= @item.price_without_tax %>)円</td>
+            <td><%= @item.add_tax_price.to_s(:delimited) %>(<%= @item.price_without_tax.to_s(:delimited) %>)円</td>
           </tr>
           <tr>
             <td>販売ステータス</td>
