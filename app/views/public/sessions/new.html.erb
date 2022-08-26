@@ -6,26 +6,42 @@
     </div>
   </div>
   <div class="row">
-    <div class="col3-md">
+    <div class="col-md-3">
       <p>会員の方はこちらからログイン</p>
     </div>
   </div>
 
-  <%= form_with model: @customer, url: new_customer_session_path do |f| %>
-    <div class="field">
-      <%= f.label :"メールアドレス" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    </div>
+  <div class="row">
+    <div class="col-md-8">
 
-    <div class="field">
-      <%= f.label :"パスワード" %>
-      <%= f.password_field :password, autocomplete: "current-password" %>
-    </div>
+      <%= form_with model: @customer, url: new_customer_session_path do |f| %>
+        <table class="table table-borderless table-sm">
 
-    <div class="actions">
-      <%= f.submit "ログイン", class:"btn btn-primary btn-sm" %>
+          <div class="field">
+            <tr>
+              <th><%= f.label :メールアドレス %></th>
+              <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+            </tr>
+          </div>
+
+          <div class="field">
+            <tr>
+              <th><%= f.label :パスワード %></th>
+              <td><%= f.password_field :password, autocomplete: "current-password" %></td>
+            </tr>
+          </div>
+
+          <div class="actions">
+            <tr>
+              <td></td>
+              <td><%= f.submit "ログイン", class:"btn btn-primary btn-sm" %></td>
+            </tr>
+          </div>
+        </table>
+      <% end %>
+
     </div>
-  <% end %>
+  </div>
 
   <div class="row">
     <div class="col3-md">
