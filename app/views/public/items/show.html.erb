@@ -27,7 +27,7 @@
         <div class="detail">
         <h4><strong><%= @item.name %></strong></h4>
         <h5><%= @item.explanation %></h5>
-        <h5><strong>￥<%= @item.add_tax_price.to_s(:dalimited) %>(税込)</strong></h5>
+        <h5><strong>￥<%= @item.add_tax_price.to_s(:delimited) %>(税込)</strong></h5>
         <% if @item.is_sale == true %>
           <%= form_with model: @cart_item,url: cart_items_path, local: true do |f| %>
             <%= f.hidden_field :item_id, :value => @item.id %>
