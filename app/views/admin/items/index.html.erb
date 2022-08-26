@@ -8,7 +8,9 @@
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="row justify-content-end">
-          <%= link_to "＋", new_admin_item_path %>
+          <%= link_to new_admin_item_path do %>
+            <i class="fa-solid fa-circle-plus fa-3x mb-3", style="color: salmon;"></i>
+          <% end %>
         </div>
         <table class="table">
           <thead>
@@ -29,7 +31,7 @@
                     <%= item.name %>
                   <% end %>
                 </td>
-                <td><%= item.price_without_tax %></td>
+                <td><%= item.price_without_tax.to_s(:delimited) %></td>
                 <td><%= item.genre.name %></td>
                 <% if item.is_sale == true %>
                   <td class="text-success font-weight-bold">販売中</td>
