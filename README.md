@@ -34,7 +34,7 @@
  2. $ cd nagano-cake
  3. $ bundle install
  4. $ rails db:migrate
- 5. $ rails db:see
+ 5. $ rails db:seed
  6. $ rails s -b 0.0.0.0
  
  ###　テスト
