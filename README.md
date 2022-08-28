@@ -4,7 +4,8 @@
 
 ![ダウンロード](https://user-images.githubusercontent.com/103346206/186650208-81d25496-c34e-4e62-84b5-8aca888e250e.png)
 
-<img width="1437" alt="スクリーンショット 2022-08-25 21 09 02" src="https://user-images.githubusercontent.com/103346206/186660534-d34734bd-5672-45f4-83ad-f1a0c2bcee34.png">
+<img width="1436" alt="スクリーンショット 2022-08-28 20 56 11" src="https://user-images.githubusercontent.com/103346206/187073010-7eec9b27-9591-45b7-9e7b-49fd38dc310f.png">
+
 
 
 # 概要
